@@ -1,0 +1,12 @@
+
+# ============================================================
+# Namespace — Isolation du projet
+# Module 4 – Docker et Kubernetes
+# ============================================================
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ai-platform
+  labels:
+    project: ai-powered-data-engineering
+    module: "4"

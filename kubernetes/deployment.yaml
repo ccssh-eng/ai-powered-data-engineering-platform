@@ -1,0 +1,73 @@
+
+# ============================================================
+# Deployment — Customer ETL Pipeline
+# Module 4 – Docker et Kubernetes
+# ============================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-etl
+  namespace: ai-platform
+  labels:
+    app: customer-etl
+    module: "4"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: customer-etl
+  template:
+    metadata:
+      labels:
+        app: customer-etl
+    spec:
+      containers:
+        - name: customer-etl
+          image: customer-etl:1.0
+          imagePullPolicy: Never       # image locale minikube
+          envFrom:
+            - configMapRef:
+                name: etl-config       # variables non-sensibles
+            - secretRef:
+                name: etl-secret       # variables sensibles
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          livenessProbe:
+            exec:
+              command: ["python", "-c", "import main"]
+            initialDelaySeconds: 10
+            periodSeconds: 30
+      restartPolicy: Always
+---
+# ============================================================
+# CronJob — Exécution planifiée du pipeline ETL
+# ============================================================
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: customer-etl-cronjob
+  namespace: ai-platform
+  labels:
+    app: customer-etl
+    module: "4"
+spec:
+  schedule: "0 * * * *"              # toutes les heures
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: customer-etl
+              image: customer-etl:1.0
+              imagePullPolicy: Never
+              envFrom:
+                - configMapRef:
+                    name: etl-config
+                - secretRef:
+                    name: etl-secret
+          restartPolicy: OnFailure
