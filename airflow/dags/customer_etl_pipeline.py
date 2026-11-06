@@ -12,7 +12,6 @@ from airflow.operators.python import PythonOperator
 from airflow.operators.empty import EmptyOperator
 
 import sys
-import os
 
 # Ajout du répertoire racine au PYTHONPATH
 sys.path.insert(0, "/opt/airflow/project")
@@ -118,4 +117,3 @@ with DAG(
     # ── Ordre d'exécution ────────────────────────────────────
     # start → check_database → create_tables → extract → transform → load → end
     start >> check_db >> create_tables >> extract >> transform >> load >> end
-

@@ -1,4 +1,3 @@
-import pytest
 
 from transformation.transform import transform_customers
 
