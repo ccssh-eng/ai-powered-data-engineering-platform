@@ -1,0 +1,114 @@
+Voici un Dockerfile optimisé, sécurisé et prêt pour la production pour une API Flask avec MongoDB.
+
+### 📄 `Dockerfile`
+
+```dockerfile
+# =============================================================================
+# ÉTAPE 1 : INSTALLATION DES DÉPENDANCES (Layer caché)
+# =============================================================================
+# On utilise python:3.11-slim pour réduire la taille de l'image
+# (pas de gcc, make, etc. dans l'image finale)
+FROM python:3.11-slim AS builder
+
+# Désactiver la compilation de bytecode pour accélérer le build
+# (optionnel, mais bon pour les builds CI/CD)
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+# Créer un utilisateur non-root
+RUN adduser --disabled-password --gecos "" appuser
+
+# Changer le répertoire de travail
+WORKDIR /app
+
+# Copier uniquement les fichiers de dépendances d'abord
+# (permet de cacher le layer si le code change mais pas les deps)
+COPY requirements.txt .
+
+# Installer les dépendances dans un environnement virtuel
+# (meilleure isolation et taille réduite)
+RUN python -m venv /opt/venv \
+    && /opt/venv/bin/pip install --no-cache-dir --upgrade pip \
+    && /opt/venv/bin/pip install --no-cache-dir -r requirements.txt
+
+# =============================================================================
+# ÉTAPE 2 : IMAGE FINALE (Production)
+# =============================================================================
+FROM python:3.11-slim
+
+# Variables d'environnement de production
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PATH="/opt/venv/bin:$PATH"
+
+# Créer l'utilisateur non-root (même nom que dans le builder pour cohérence)
+RUN adduser --disabled-password --gecos "" appuser
+
+# Changer le répertoire de travail
+WORKDIR /app
+
+# Copier l'environnement virtuel depuis le builder
+COPY --from=builder /opt/venv /opt/venv
+
+# Copier le code de l'application
+# (Assurez-vous d'avoir un .dockerignore pour exclure __pycache__, .git, etc.)
+COPY --chown=appuser:appuser . .
+
+# Changer le propriétaire des fichiers pour l'utilisateur non-root
+RUN chown -R appuser:appuser /app
+
+# Changer l'utilisateur courant pour exécuter le conteneur
+USER appuser
+
+# Exposition du port (à adapter selon votre configuration Gunicorn)
+EXPOSE 8000
+
+# Commande de démarrage
+# On utilise Gunicorn comme serveur WSGI de production
+# --workers : nombre de workers (recommandé : 2 * CPU + 1)
+# --bind : adresse IP et port
+CMD ["gunicorn", "--workers", "3", "--bind", "0.0.0.0:8000", "app:app"]
+```
+
+### 📄 `.dockerignore` (indispensable)
+
+Créez ce fichier à la racine de votre projet pour éviter de copier des fichiers inutiles dans l'image :
+
+```text
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Environnement
+.env
+.env.local
+.env.production
+
+# Tests
+tests/
+test_*.py
+conftest.py
+
+# Docker
+D
