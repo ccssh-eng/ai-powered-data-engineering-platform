@@ -4,7 +4,6 @@
 # ============================================================
 
 import os
-import json
 from datetime import datetime
 from groq import Groq
 from dotenv import load_dotenv
@@ -48,14 +47,18 @@ def ask_assistant(question: str, context: str = "") -> str:
 
 
 def generate_dockerfile(app_description: str) -> str:
-    """Génère un Dockerfile optimisé."""
-    prompt = f"Génère un Dockerfile production-ready pour : {app_description}. Utilise un utilisateur non-root et des layers optimisés."
+    prompt = (
+        f"Génère un Dockerfile production-ready pour : {app_description}. "
+        "Utilise un utilisateur non-root et des layers optimisés."
+    )
     return ask_assistant(prompt)
 
 
 def generate_gitlab_pipeline(stages: list) -> str:
-    """Génère un pipeline GitLab CI."""
-    prompt = f"Génère un fichier .gitlab-ci.yml avec ces stages : {', '.join(stages)}. Inclus des règles pour la branche main."
+    prompt = (
+        f"Génère un fichier .gitlab-ci.yml avec ces stages : {', '.join(stages)}. "
+        "Inclus des règles pour la branche main."
+    )
     return ask_assistant(prompt)
 
 
