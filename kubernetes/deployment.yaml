@@ -42,7 +42,7 @@ spec:
               command: ["python", "-c", "import main"]
             initialDelaySeconds: 10
             periodSeconds: 30
-      restartPolicy: Always
+      restartPolicy: Never
 ---
 # ============================================================
 # CronJob — Exécution planifiée du pipeline ETL
