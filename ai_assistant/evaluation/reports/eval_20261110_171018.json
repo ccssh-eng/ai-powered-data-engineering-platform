@@ -1,0 +1,88 @@
+{
+  "model": "qwen/qwen3-8b",
+  "date": "2026-11-10T17:10:18.433498",
+  "average_score": 0,
+  "grade": "À AMÉLIORER",
+  "results": [
+    {
+      "id": "T01",
+      "category": "Dockerfile",
+      "question": "Génère un Dockerfile Python 3.10 pour une application Flask avec gunicorn....",
+      "metrics": {
+        "keyword_score": 0,
+        "length_score": 0,
+        "quality_score": 0,
+        "total_score": 0,
+        "keywords_found": [],
+        "response_length": 0,
+        "elapsed_s": 0,
+        "status": "ERROR: Error code: 404 - {'error': {'message': 'The model `qwen/qwen3-8b` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
+      },
+      "response_preview": ""
+    },
+    {
+      "id": "T02",
+      "category": "GitLab CI",
+      "question": "Génère un pipeline GitLab CI avec les stages test, build et deploy....",
+      "metrics": {
+        "keyword_score": 0,
+        "length_score": 0,
+        "quality_score": 0,
+        "total_score": 0,
+        "keywords_found": [],
+        "response_length": 0,
+        "elapsed_s": 0,
+        "status": "ERROR: Error code: 404 - {'error': {'message': 'The model `qwen/qwen3-8b` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
+      },
+      "response_preview": ""
+    },
+    {
+      "id": "T03",
+      "category": "Bash",
+      "question": "Génère un script bash pour sauvegarder une base PostgreSQL avec pg_dump....",
+      "metrics": {
+        "keyword_score": 0,
+        "length_score": 0,
+        "quality_score": 0,
+        "total_score": 0,
+        "keywords_found": [],
+        "response_length": 0,
+        "elapsed_s": 0,
+        "status": "ERROR: Error code: 404 - {'error': {'message': 'The model `qwen/qwen3-8b` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
+      },
+      "response_preview": ""
+    },
+    {
+      "id": "T04",
+      "category": "Log Analysis",
+      "question": "Analyse ce log d'erreur et donne le diagnostic en JSON : 'ERROR: connection refu...",
+      "metrics": {
+        "keyword_score": 0,
+        "length_score": 0,
+        "quality_score": 0,
+        "total_score": 0,
+        "keywords_found": [],
+        "response_length": 0,
+        "elapsed_s": 0,
+        "status": "ERROR: Error code: 404 - {'error': {'message': 'The model `qwen/qwen3-8b` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
+      },
+      "response_preview": ""
+    },
+    {
+      "id": "T05",
+      "category": "Kubernetes",
+      "question": "Explique la différence entre un Deployment et un CronJob Kubernetes....",
+      "metrics": {
+        "keyword_score": 0,
+        "length_score": 0,
+        "quality_score": 0,
+        "total_score": 0,
+        "keywords_found": [],
+        "response_length": 0,
+        "elapsed_s": 0,
+        "status": "ERROR: Error code: 404 - {'error': {'message': 'The model `qwen/qwen3-8b` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}"
+      },
+      "response_preview": ""
+    }
+  ]
+}

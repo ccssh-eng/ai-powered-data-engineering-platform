@@ -1,0 +1,118 @@
+{
+  "model": "qwen/qwen3.8-27b",
+  "date": "2026-11-10T17:21:52.987079",
+  "average_score": 91.5,
+  "grade": "EXCELLENT",
+  "results": [
+    {
+      "id": "T01",
+      "category": "Dockerfile",
+      "question": "Génère un Dockerfile Python 3.10 pour une application Flask avec gunicorn....",
+      "metrics": {
+        "keyword_score": 100.0,
+        "length_score": 100.0,
+        "quality_score": 100.0,
+        "total_score": 100.0,
+        "keywords_found": [
+          "FROM",
+          "python",
+          "COPY",
+          "RUN",
+          "pip",
+          "CMD",
+          "gunicorn"
+        ],
+        "response_length": 225,
+        "elapsed_s": 0.68,
+        "status": "OK"
+      },
+      "response_preview": "```dockerfile\nFROM python:3.10-slim\n\nWORKDIR /app\n\nCOPY requirements.txt .\nRUN pip install --no-cache-dir -r requirements.txt\n\nCOPY . .\n\nEXPOSE 8000\n\nCMD [\"gunicorn\", \"--bind\", \"0.0.0.0:8000\", \"--work"
+    },
+    {
+      "id": "T02",
+      "category": "GitLab CI",
+      "question": "Génère un pipeline GitLab CI avec les stages test, build et deploy....",
+      "metrics": {
+        "keyword_score": 100.0,
+        "length_score": 100.0,
+        "quality_score": 100.0,
+        "total_score": 100.0,
+        "keywords_found": [
+          "stages",
+          "test",
+          "build",
+          "deploy",
+          "script",
+          "image"
+        ],
+        "response_length": 2576,
+        "elapsed_s": 1.5,
+        "status": "OK"
+      },
+      "response_preview": "Voici un exemple de fichier `.gitlab-ci.yml` qui définit un pipeline GitLab CI avec les stages **test**, **build** et **deploy**.\n\n```yaml\n# .gitlab-ci.yml\n\n# Définition des stages dans l'ordre d'exéc"
+    },
+    {
+      "id": "T03",
+      "category": "Bash",
+      "question": "Génère un script bash pour sauvegarder une base PostgreSQL avec pg_dump....",
+      "metrics": {
+        "keyword_score": 80.0,
+        "length_score": 100.0,
+        "quality_score": 100.0,
+        "total_score": 90.0,
+        "keywords_found": [
+          "pg_dump",
+          "bash",
+          "backup",
+          "date"
+        ],
+        "response_length": 1005,
+        "elapsed_s": 0.85,
+        "status": "OK"
+      },
+      "response_preview": "```bash\n#!/bin/bash\n\n# Script de sauvegarde PostgreSQL avec pg_dump\n\n# Configuration\nDB_NAME=\"my_database\"\nDB_USER=\"postgres\"\nDB_HOST=\"localhost\"\nDB_PORT=\"5432\"\nBACKUP_DIR=\"/var/backups/postgresql\"\nTI"
+    },
+    {
+      "id": "T04",
+      "category": "Log Analysis",
+      "question": "Analyse ce log d'erreur et donne le diagnostic en JSON : 'ERROR: connection refu...",
+      "metrics": {
+        "keyword_score": 75.0,
+        "length_score": 100.0,
+        "quality_score": 0.0,
+        "total_score": 67.5,
+        "keywords_found": [
+          "postgres",
+          "connection",
+          "error"
+        ],
+        "response_length": 766,
+        "elapsed_s": 28.18,
+        "status": "OK"
+      },
+      "response_preview": "```json\n{\n  \"error_type\": \"ConnectionRefused\",\n  \"service\": \"postgres\",\n  \"host\": \"postgres\",\n  \"port\": 5432,\n  \"retries\": 3,\n  \"diagnosis\": \"Le client n'a pas pu établir de connexion au serveur Postg"
+    },
+    {
+      "id": "T05",
+      "category": "Kubernetes",
+      "question": "Explique la différence entre un Deployment et un CronJob Kubernetes....",
+      "metrics": {
+        "keyword_score": 100.0,
+        "length_score": 100.0,
+        "quality_score": 100.0,
+        "total_score": 100.0,
+        "keywords_found": [
+          "deployment",
+          "cronjob",
+          "pod",
+          "schedule",
+          "replica"
+        ],
+        "response_length": 2815,
+        "elapsed_s": 10.79,
+        "status": "OK"
+      },
+      "response_preview": "En Kubernetes, **Deployment** et **CronJob** sont deux objets distincts qui servent à gérer des charges de travail, mais ils répondent à des besoins fondamentalement différents : l'un gère des applica"
+    }
+  ]
+}
