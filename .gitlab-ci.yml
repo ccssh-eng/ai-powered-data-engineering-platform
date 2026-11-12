@@ -78,7 +78,7 @@ deploy:
   environment:
     name: production
   script:
-    - kubectl config use-context ssh-group2/ai-powered-data-engineering-platform:minikube-agent
+    - kubectl config use-context cedric-ssh/ai-powered-data-engineering-platform:minikube-agent
     - kubectl set image cronjob/customer-etl-cronjob customer-etl=$DOCKER_IMAGE:$DOCKER_TAG -n ai-platform
     - kubectl get cronjob customer-etl-cronjob -n ai-platform
   rules:
