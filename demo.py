@@ -11,30 +11,36 @@ import psycopg
 from datetime import datetime
 
 # ── Couleurs terminal ─────────────────────────────────────────
-GREEN  = "\033[92m"
+GREEN = "\033[92m"
 YELLOW = "\033[93m"
-RED    = "\033[91m"
-BLUE   = "\033[94m"
-CYAN   = "\033[96m"
-BOLD   = "\033[1m"
-RESET  = "\033[0m"
+RED = "\033[91m"
+BLUE = "\033[94m"
+CYAN = "\033[96m"
+BOLD = "\033[1m"
+RESET = "\033[0m"
+
 
 def title(msg):
     print(f"\n{BOLD}{BLUE}{'='*60}{RESET}")
     print(f"{BOLD}{BLUE}  {msg}{RESET}")
     print(f"{BOLD}{BLUE}{'='*60}{RESET}")
 
+
 def step(msg):
     print(f"\n{CYAN}▶ {msg}{RESET}")
+
 
 def ok(msg):
     print(f"  {GREEN}✅ {msg}{RESET}")
 
+
 def warn(msg):
     print(f"  {YELLOW}⚠️  {msg}{RESET}")
 
+
 def err(msg):
     print(f"  {RED}❌ {msg}{RESET}")
+
 
 def pause(s=1):
     time.sleep(s)
