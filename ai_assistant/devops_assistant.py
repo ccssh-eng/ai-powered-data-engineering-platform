@@ -108,3 +108,12 @@ if __name__ == "__main__":
     save_response("log_analysis", result)
 
     print("\n Module 6 Étape 1 — Tests terminés !")
+
+
+def verify_token(token: str) -> bool:
+    """Vérifie le token d'authentification API."""
+    import os
+    expected = os.getenv("AI_API_TOKEN")
+    if not expected:
+        return True  # mode dev sans token
+    return token == expected
