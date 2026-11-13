@@ -6,3 +6,5 @@ __pycache__/
 .coverage
 
 airflow/logs/
+airflow/logs/
+ai_assistant/logs/
